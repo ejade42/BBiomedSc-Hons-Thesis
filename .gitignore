@@ -1,0 +1,11 @@
+hpc_pipeline/NOTCH2NLC-LRS-pipeline-working-directory/
+hpc_pipeline/input/emma/
+local_analysis/intermediate_files
+local_analysis/output_figures
+local_analysis/output_tables
+local_analysis/input
+old_repo/
+
+*.DS_store
+*Rplots.pdf
+*.Rhistory
