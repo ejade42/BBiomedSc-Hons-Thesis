@@ -2,21 +2,19 @@
 input_path = "/Volumes/ScotterLab/Evelyn Jade/Experiments/240903 - Exp 13B - RBPs/"
 input_folder = "images_for_analysis/"
 
-output_path = "/Volumes/ScotterLab/Evelyn Jade/Experiments/241007 - Exp 16 - Microscopy images for thesis/5 - NOTCH2NLC colocalisation with RBPs/"
+output_path = "/Volumes/ScotterLab/Evelyn Jade/Experiments/241007 - Exp 16 - Microscopy images for thesis/5 - RBPs/"
 output_folder = "imagej_export/"
 output_format = "TIFF"
 
 
 
 flag = newArray("40X/r02c05f05p01-ch2sk1fk1fl1.tiff", "40X/r02c08f01p01-ch2sk1fk1fl1.tiff",
-			    "40X/r03c04f02p01-ch2sk1fk1fl1.tiff", "40X/r03c08f03p01-ch2sk1fk1fl1.tiff",
 				"40X/r04c04f01p01-ch2sk1fk1fl1.tiff", "40X/r04c08f04p01-ch2sk1fk1fl1.tiff",
 				"40X/r05c04f01p01-ch2sk1fk1fl1.tiff", "40X/r05c09f01p01-ch2sk1fk1fl1.tiff",
 				"40X/r06c04f01p01-ch2sk1fk1fl1.tiff", "40X/r06c08f02p01-ch2sk1fk1fl1.tiff",
 				"40X/r07c04f01p01-ch2sk1fk1fl1.tiff", "40X/r07c08f05p01-ch2sk1fk1fl1.tiff");
 		
 flag_names = newArray("TDP43-Mock-F", "TDP43-GGC98-F",
-					  "Ub-Mock-F", "Ub-GGC98-F",
 					  "Fus-Mock-F", "Fus-GGC98-F",
 					  "Matrin-Mock-F", "Matrin-GGC98-F",
 					  "hnRNP-Mock-F", "hnRNP-GGC98-F",
@@ -24,14 +22,12 @@ flag_names = newArray("TDP43-Mock-F", "TDP43-GGC98-F",
 					  
 
 RBPs = newArray("40X/r02c05f05p01-ch3sk1fk1fl1.tiff", "40X/r02c08f01p01-ch3sk1fk1fl1.tiff",
-			    "40X/r03c04f02p01-ch3sk1fk1fl1.tiff", "40X/r03c08f03p01-ch3sk1fk1fl1.tiff",
 				"40X/r04c04f01p01-ch3sk1fk1fl1.tiff", "40X/r04c08f04p01-ch3sk1fk1fl1.tiff",
 				"40X/r05c04f01p01-ch3sk1fk1fl1.tiff", "40X/r05c09f01p01-ch3sk1fk1fl1.tiff",
 				"40X/r06c04f01p01-ch3sk1fk1fl1.tiff", "40X/r06c08f02p01-ch3sk1fk1fl1.tiff",
 				"40X/r07c04f01p01-ch3sk1fk1fl1.tiff", "40X/r07c08f05p01-ch3sk1fk1fl1.tiff");
 		
 RBPs_names = newArray("TDP43-Mock-R", "TDP43-GGC98-R",
-					  "Ub-Mock-R", "Ub-GGC98-R",
 					  "Fus-Mock-R", "Fus-GGC98-R",
 					  "Matrin-Mock-R", "Matrin-GGC98-R",
 					  "hnRNP-Mock-R", "hnRNP-GGC98-R",
@@ -40,14 +36,12 @@ RBPs_names = newArray("TDP43-Mock-R", "TDP43-GGC98-R",
 
 
 p62 = newArray("40X/r02c05f05p01-ch4sk1fk1fl1.tiff", "40X/r02c08f01p01-ch4sk1fk1fl1.tiff",
-			   "40X/r03c04f02p01-ch4sk1fk1fl1.tiff", "40X/r03c08f03p01-ch4sk1fk1fl1.tiff",
 			   "40X/r04c04f01p01-ch4sk1fk1fl1.tiff", "40X/r04c08f04p01-ch4sk1fk1fl1.tiff",
 			   "40X/r05c04f01p01-ch4sk1fk1fl1.tiff", "40X/r05c09f01p01-ch4sk1fk1fl1.tiff",
 			   "40X/r06c04f01p01-ch4sk1fk1fl1.tiff", "40X/r06c08f02p01-ch4sk1fk1fl1.tiff",
 			   "40X/r07c04f01p01-ch4sk1fk1fl1.tiff", "40X/r07c08f05p01-ch4sk1fk1fl1.tiff");
 		
 p62_names = newArray("TDP43-Mock-P", "TDP43-GGC98-P",
-					 "Ub-Mock-P", "Ub-GGC98-P",
 					 "Fus-Mock-P", "Fus-GGC98-P",
 					 "Matrin-Mock-P", "Matrin-GGC98-P",
 					 "hnRNP-Mock-P", "hnRNP-GGC98-P",
@@ -55,14 +49,12 @@ p62_names = newArray("TDP43-Mock-P", "TDP43-GGC98-P",
 					 
 					 
 hoechst = newArray("40X/r02c05f05p01-ch1sk1fk1fl1.tiff", "40X/r02c08f01p01-ch1sk1fk1fl1.tiff",
-			       "40X/r03c04f02p01-ch1sk1fk1fl1.tiff", "40X/r03c08f03p01-ch1sk1fk1fl1.tiff",
 				   "40X/r04c04f01p01-ch1sk1fk1fl1.tiff", "40X/r04c08f04p01-ch1sk1fk1fl1.tiff",
 				   "40X/r05c04f01p01-ch1sk1fk1fl1.tiff", "40X/r05c09f01p01-ch1sk1fk1fl1.tiff",
 				   "40X/r06c04f01p01-ch1sk1fk1fl1.tiff", "40X/r06c08f02p01-ch1sk1fk1fl1.tiff",
 				   "40X/r07c04f01p01-ch1sk1fk1fl1.tiff", "40X/r07c08f05p01-ch1sk1fk1fl1.tiff");
 		
 hoechst_names = newArray("TDP43-Mock-H", "TDP43-GGC98-H",
-					     "Ub-Mock-H", "Ub-GGC98-H",
 					     "Fus-Mock-H", "Fus-GGC98-H",
 					     "Matrin-Mock-H", "Matrin-GGC98-H",
 					     "hnRNP-Mock-H", "hnRNP-GGC98-H",
@@ -92,11 +84,10 @@ run("Apply LUT", "stack");
 
 // Export cropped regions
 crop_and_save(2, 618, 442, flag_names, false);
-crop_and_save(4, 50, 750, flag_names, false);
-crop_and_save(6, 650, 350, flag_names, false);
-crop_and_save(8, 250, 590, flag_names, false);
-crop_and_save(10, 750, 800, flag_names, false);
-crop_and_save(12, 700, 575, flag_names, false);
+crop_and_save(4, 650, 350, flag_names, false);
+crop_and_save(6, 250, 590, flag_names, false);
+crop_and_save(8, 750, 365, flag_names, false);
+crop_and_save(10, 700, 575, flag_names, false);
 
 // Export uncropped regions
 for (i=1; i<=flag.length; i++) {
@@ -118,7 +109,7 @@ run("Images to Stack", "name=[RBPs_1] use");
 setMinAndMax(50, 200);
 run("Apply LUT", "stack");
 
-for (i=2; i<6; i++) {
+for (i=2; i<4; i++) {
 	open(input_path + input_folder + RBPs[i]);
 	rename(RBPs_names[i]);
 }
@@ -126,7 +117,7 @@ run("Images to Stack", "name=[RBPs_2] use");
 setMinAndMax(50, 750);
 run("Apply LUT", "stack");
 
-for (i=6; i<8; i++) {
+for (i=4; i<6; i++) {
 	open(input_path + input_folder + RBPs[i]);
 	rename(RBPs_names[i]);
 }
@@ -134,7 +125,7 @@ run("Images to Stack", "name=[RBPs_3] use");
 setMinAndMax(50, 1250);
 run("Apply LUT", "stack");
 
-for (i=8; i<12; i++) {
+for (i=6; i<10; i++) {
 	open(input_path + input_folder + RBPs[i]);
 	rename(RBPs_names[i]);
 }
@@ -146,11 +137,10 @@ run("Concatenate...", "title=RBPs image1=RBPs_1 image2=RBPs_2 image3=RBPs_3 imag
 
 // Export cropped regions
 crop_and_save(2, 618, 442, RBPs_names, false);
-crop_and_save(4, 50, 750, RBPs_names, false);
-crop_and_save(6, 650, 350, RBPs_names, false);
-crop_and_save(8, 250, 590, RBPs_names, false);
-crop_and_save(10, 750, 800, RBPs_names, false);
-crop_and_save(12, 700, 575, RBPs_names, false);
+crop_and_save(4, 650, 350, RBPs_names, false);
+crop_and_save(6, 250, 590, RBPs_names, false);
+crop_and_save(8, 750, 365, RBPs_names, false);
+crop_and_save(10, 700, 575, RBPs_names, false);
 
 // Export uncropped regions
 for (i=1; i<=RBPs.length; i++) {
@@ -174,11 +164,10 @@ run("Apply LUT", "stack");
 
 // Export cropped regions
 crop_and_save(2, 618, 442, p62_names, false);
-crop_and_save(4, 50, 750, p62_names, false);
-crop_and_save(6, 650, 350, p62_names, false);
-crop_and_save(8, 250, 590, p62_names, false);
-crop_and_save(10, 750, 800, p62_names, false);
-crop_and_save(12, 700, 575, p62_names, false);
+crop_and_save(4, 650, 350, p62_names, false);
+crop_and_save(6, 250, 590, p62_names, false);
+crop_and_save(8, 750, 365, p62_names, false);
+crop_and_save(10, 700, 575, p62_names, false);
 
 // Export uncropped regions
 for (i=1; i<=p62.length; i++) {
@@ -202,11 +191,10 @@ run("Apply LUT", "stack");
 
 // Export cropped regions
 crop_and_save(2, 618, 442, hoechst_names, false);
-crop_and_save(4, 50, 750, hoechst_names, false);
-crop_and_save(6, 650, 350, hoechst_names, false);
-crop_and_save(8, 250, 590, hoechst_names, false);
-crop_and_save(10, 750, 800, hoechst_names, false);
-crop_and_save(12, 700, 575, hoechst_names, false);
+crop_and_save(4, 650, 350, hoechst_names, false);
+crop_and_save(6, 250, 590, hoechst_names, false);
+crop_and_save(8, 750, 365, hoechst_names, false);
+crop_and_save(10, 700, 575, hoechst_names, false);
 
 // Export uncropped regions
 for (i=1; i<=hoechst.length; i++) {
