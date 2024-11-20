@@ -176,6 +176,21 @@ calculate_sequence_statistics <- function(sequence_data) {
 }
 
 
+## Convert allele names from short/long/hyper to wildtype/expanded/hyperexpanded
+convert_allele_names <- function(old_allele_names) {
+    new_allele_names <- rep(NA, length(old_allele_names))
+    for (i in 1:length(old_allele_names)) {
+        if (tolower(old_allele_names[i]) == "short") {
+            new_allele_names[i] <- "Wildtype"
+        } else if (tolower(old_allele_names[i]) == "long") {
+            new_allele_names[i] <- "Expanded"
+        } else if (tolower(old_allele_names[i]) == "hyper") {
+            new_allele_names[i] <- "Hyperexpanded"
+        }
+    }
+    return(new_allele_names)
+}
+
 
 ## Calculate family-wide equivalent of test-wise p value given number of comparisons
 ## Uses mpfr to avoid losing very small P values

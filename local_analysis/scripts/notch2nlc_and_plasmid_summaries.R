@@ -90,7 +90,6 @@ for (i in 1:length(exon_lengths)) {
     this_exon <- paste0(i, paste(rep(blank, exon_lengths[i]-2), collapse = ""), "|")
     exon_string <- paste0(exon_string, this_exon)
 }
-exon_string
 
 ## Output
 output_exons <- c(">NOTCH2NLC transcript variant 1 (NCBI GenBank: NM_001364012.2) sequence with forward reading frames",

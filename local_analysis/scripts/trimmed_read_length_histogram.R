@@ -2,7 +2,6 @@
 
 library(tidyverse)
 library(ggtext)
-library(ggpattern)
 library(ggpubr)
 source("scripts/common_functions.R")
 
@@ -22,10 +21,8 @@ all_participant_data$publication_id <- factor(all_participant_data$publication_i
 
 main_histogram <- ggplot(all_participant_data, aes(x = flanked_length, fill = batch, pattern = data_source)) +
     scale_x_continuous(breaks = seq(0,2200,200), limits = c(0,2200)) +
-    scale_pattern_manual(values = c("Literature" = "stripe", "Novel (ours)" = "none")) +
     scale_fill_manual(values = c("Batch 1" = "#DC1E1E", "Batch 2" = "#F07800", "Batch 3/4" = "#008C00", "Ishiura" = "#006EDC", "Podar" = "#781EF0", "Tian" = "#DC00DC")) +
-    geom_histogram_pattern(col = alpha("#333", 1), linewidth = 0.3, binwidth = 25, boundary = 0, closed = "left",
-                           pattern_angle = 45, pattern_colour = NA, pattern_fill = "black", pattern_spacing = 0.01, pattern_density = 0.2) +
+    geom_histogram(col = alpha("#333", 1), linewidth = 0.3, binwidth = 25, boundary = 0, closed = "left") +
     geom_vline(xintercept = 200, col = "red", linetype = "dashed") +
     geom_vline(xintercept = 800, col = "red", linetype = "dashed") +
     theme_bw() +

@@ -32,6 +32,10 @@ sequence_data$publication_id <- factor(sequence_data$publication_id,
                                          "Tian 2019 F1-IV-7", "Tian 2019 F1-IV-15", "Tian 2019 F2-II-3",
                                          "Tian 2019 F4-II-2", "Tian 2019 F5-II-1", "Tian 2019 F5-II-4", "Tian 2019 F9-II-6"))
 
+sequence_data$allele_original <- sequence_data$allele
+sequence_data$allele <- convert_allele_names(sequence_data$allele_original)
+sequence_data$allele <- factor(sequence_data$allele, c("Wildtype", "Expanded", "Hyperexpanded"))
+
 sequence_data <- calculate_sequence_statistics(sequence_data)
 write.csv(sequence_data, "intermediate_files/consensus_read_data_combined.csv", row.names = F)
 
@@ -71,6 +75,11 @@ rm(consensus_summary_table, new_rows)
 
 
 
+## Define colours
+allele_colours <- c("Wildtype" = "#800030", "Expanded" = "darkblue", "Hyperexpanded" = "darkgreen")
+method_colours <- c("Flye" = "red", "Global" = "orange", "Local" = "#FB61D7")
+
+
 ## GGA and repeat length plot
 medians <- sequence_data %>%
     filter(type == "Read") %>%
@@ -89,12 +98,12 @@ bp_gga <- ggplot(sequence_data, aes(x = length_bp, y = whole_seq_proportion_GGA)
                linetype = "dashed", alpha = 0.3) +
     geom_point(data = sequence_data %>% filter(type == "Read"), aes(col = allele), 
                size = 1.5, alpha = 0.7, stroke = 0.75) +
-    scale_colour_manual(values = c("Long" = "darkblue", "Short" = "#800030", "Hyper" = "darkgreen")) +
-    labs(col = "Allele") +
+    scale_colour_manual(values = allele_colours) +
+    labs(col = "Allele type") +
     new_scale_colour() +
     geom_point(data = sequence_data %>% filter(type == "Consensus") %>% arrange(desc(method)),
                aes(col = method, shape = method), size = 2, stroke = 1) +
-    scale_colour_manual(values = c("Flye" = "red", "Global" = "orange", "Local" = "#FB61D7")) +
+    scale_colour_manual(values = method_colours) +
     scale_shape_manual(values = c("Flye" = 4, "Global" = 10, "Local" = 2)) +
     theme_bw() +
     scale_x_continuous(breaks = seq(0,2200,500), limits = c(0,2200)) + ylim(0, 0.32) +
@@ -126,12 +135,12 @@ tsne <- ggplot(tsne_data, aes(x = V1, y = V2)) +
                linetype = "dashed", alpha = 0.3) +
     geom_point(data = tsne_data %>% filter(type == "Read"), aes(col = allele), 
                size = 1.5, alpha = 0.7, stroke = 0.75) +
-    scale_colour_manual(values = c("Long" = "darkblue", "Short" = "#900030", "Hyper" = "darkgreen")) +
-    labs(col = "Allele") +
+    scale_colour_manual(values = allele_colours) +
+    labs(col = "Allele type") +
     new_scale_colour() +
     geom_point(data = tsne_data %>% filter(type == "Consensus") %>% arrange(desc(method)),
                aes(col = method, shape = method), size = 2, stroke = 1) +
-    scale_colour_manual(values = c("Flye" = "red", "Global" = "orange", "Local" = "#FB61D7")) +
+    scale_colour_manual(values = method_colours) +
     scale_shape_manual(values = c("Flye" = 4, "Global" = 10, "Local" = 2)) +
     theme_bw() +
     #xlim(0, 700) + ylim(0, 0.3) +
@@ -163,12 +172,12 @@ pca_faceted <- ggplot(pca_data, aes(x = PC1, y = PC2)) +
                linetype = "dashed", alpha = 0.3) +
     geom_point(data = pca_data %>% filter(type == "Read"), aes(col = allele), 
                size = 1.5, alpha = 0.7, stroke = 0.75) +
-    scale_colour_manual(values = c("Long" = "darkblue", "Short" = "#900030", "Hyper" = "darkgreen")) +
-    labs(col = "Allele") +
+    scale_colour_manual(values = allele_colours) +
+    labs(col = "Allele type") +
     new_scale_colour() +
     geom_point(data = pca_data %>% filter(type == "Consensus") %>% arrange(desc(method)),
                aes(col = method, shape = method), size = 2, stroke = 1, alpha = 0.9) +
-    scale_colour_manual(values = c("Flye" = "red", "Global" = "orange", "Local" = "#FB61D7")) +
+    scale_colour_manual(values = method_colours) +
     scale_shape_manual(values = c("Flye" = 4, "Global" = 10, "Local" = 2)) +
     theme_bw() +
     ggtitle("(c) PCA") +
@@ -179,8 +188,7 @@ pca_faceted
 
 
 
-pca_scaled$rotation[,1:2]
-
+## MAY OR MAY NOT BE INCLUDED IN FIGURE, KEPT HERE FOR OPTIONS
 rotation_data <- data.frame(pca_scaled$rotation, variable = rownames(pca_scaled$rotation))
 arrow_scale <- 15
 pca_combined <- ggplot(rotation_data, aes(x = PC1, y = PC2)) +
@@ -188,12 +196,12 @@ pca_combined <- ggplot(rotation_data, aes(x = PC1, y = PC2)) +
     geom_text(aes(x = PC1*arrow_scale, y = PC2*arrow_scale, label = variable), size = 2.5, col = "#444") +
     geom_point(data = pca_data %>% filter(type == "Read"), aes(col = allele), 
                size = 1.5, alpha = 0.7, stroke = 0.75) +
-    scale_colour_manual(values = c("Long" = "darkblue", "Short" = "#900030", "Hyper" = "darkgreen")) +
-    labs(col = "Allele") +
+    scale_colour_manual(values = allele_colours) +
+    labs(col = "Allele type") +
     new_scale_colour() +
     geom_point(data = pca_data %>% filter(type == "Consensus") %>% arrange(desc(method)),
                aes(col = method, shape = method), size = 1.5, stroke = 1, alpha = 0.9) +
-    scale_colour_manual(values = c("Flye" = "red", "Global" = "orange", "Local" = "#FB61D7")) +
+    scale_colour_manual(values = method_colours) +
     scale_shape_manual(values = c("Flye" = 4, "Global" = 10, "Local" = 2)) +
     scale_x_continuous(limits = c(-12,8.5), breaks = seq(-12,8,4)) +
     ggtitle("(d) PCA loadings") +
@@ -204,8 +212,11 @@ pca_combined
 
 
 
-ggarrange(bp_gga, tsne, pca_faceted, pca_combined, common.legend = TRUE, legend = "right")
+ggarrange(bp_gga, tsne, pca_faceted, pca_combined, nrow = 2, ncol = 2, common.legend = TRUE, legend = "right")
 ggsave("output_figures/Figure 2-7 - Dimensionality reduction to compare consensus construction methods.png", dpi = 600, width = 18, height = 14)
+
+#ggarrange(bp_gga, tsne, pca_faceted, nrow = 3, ncol = 1, common.legend = TRUE, legend = "right")
+#ggsave("output_figures/Figure 2-7 - Dimensionality reduction to compare consensus construction methods.png", dpi = 600, width = 8, height = 18)
 
 
 

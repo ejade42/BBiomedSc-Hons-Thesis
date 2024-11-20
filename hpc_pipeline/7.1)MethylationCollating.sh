@@ -15,8 +15,8 @@ echo \($(date +"%Y-%m-%d %T")\) start
 module load R/4.2.1-gimkl-2022a
 
 
-## Batch 1 participants
-participants="20JK4316D 21LE9817N 22NZ3355R 311 313 317 318 319 327"
+## List of participants
+participants="20JK4316D 21LE9817N 22NZ3355R GA5817C GQ1307H 20JK4322C 20JO4660C 22PP0924B 22RR5603Q 22RS5734T 311 313 317 318 319 327"
 
 cd dorado
 
