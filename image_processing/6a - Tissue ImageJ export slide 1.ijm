@@ -1,7 +1,7 @@
 //path=getDirectory("Choose a data folder"); print(path); exit;
 input_path = "U:/Evelyn Jade/Experiments/241008 - Exp 17 - First NIID IHC/"
 
-output_path = "U:/Evelyn Jade/Experiments/241007 - Exp 16 - Microscopy images for thesis/7 - NIID IHC/"
+output_path = "U:/Evelyn Jade/Experiments/241007 - Exp 16 - Microscopy images for thesis/6 - NIID IHC/"
 output_folder = "imagej_export/"
 output_format = "TIFF"
 
@@ -13,6 +13,7 @@ output_format = "TIFF"
 // makeRectangle(1625, 1075, 420, 315)
 
 // Levels: Hoechst 0/750, 488 120/750, 647 120/2000.
+// Increased levels: Hoechst 0/250, 488 120/500, 647 120/1500
 
 
 // Untick all boxes

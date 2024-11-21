@@ -1,7 +1,7 @@
 //path=getDirectory("Choose a data folder"); print(path); exit;
 input_path = "U:/Evelyn Jade/Experiments/241008 - Exp 17 - First NIID IHC/"
 
-output_path = "U:/Evelyn Jade/Experiments/241007 - Exp 16 - Microscopy images for thesis/7 - NIID IHC/"
+output_path = "U:/Evelyn Jade/Experiments/241007 - Exp 16 - Microscopy images for thesis/6 - NIID IHC/"
 output_folder = "imagej_export/"
 output_format = "TIFF"
 
