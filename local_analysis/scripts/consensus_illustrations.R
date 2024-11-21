@@ -162,7 +162,7 @@ writeLines(fasta_consensus_output, "intermediate_files/all_local_consensuses.fas
 
 
 
-root = "output_figures/Figure 3-9 - Selected consensus visualisations - "
+root = "output_figures/Figure 3-8 - Selected consensus visualisations - "
 
 ## NIID:
 f1_iii_3_short <- consensuses %>% filter(publication_id == "F1-III-3", allele == "Short") %>% pull(sequence)

@@ -107,13 +107,13 @@ assign_participant_batches <- function(all_participant_data) {
     for (id in unique(all_participant_data$participant_id)) {
         
         if (id %in% batch_1) {
-            all_participant_data[all_participant_data$participant_id == id, "data_source"] <- "Novel (ours)"
+            all_participant_data[all_participant_data$participant_id == id, "data_source"] <- "Novel"
             all_participant_data[all_participant_data$participant_id == id, "batch"] <- "Batch 1"
         } else if (id %in% batch_2) {
-            all_participant_data[all_participant_data$participant_id == id, "data_source"] <- "Novel (ours)"
+            all_participant_data[all_participant_data$participant_id == id, "data_source"] <- "Novel"
             all_participant_data[all_participant_data$participant_id == id, "batch"] <- "Batch 2"
         } else if (id %in% batch_3_4) {
-            all_participant_data[all_participant_data$participant_id == id, "data_source"] <- "Novel (ours)"
+            all_participant_data[all_participant_data$participant_id == id, "data_source"] <- "Novel"
             all_participant_data[all_participant_data$participant_id == id, "batch"] <- "Batch 3/4"
         } else if (id %in% ishiura) {
             all_participant_data[all_participant_data$participant_id == id, "data_source"] <- "Literature"

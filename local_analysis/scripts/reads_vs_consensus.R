@@ -61,18 +61,26 @@ consensus_summary_table <- sequence_data %>%
     relocate(c(publication_id, allele, None, Local, Global, Flye)) %>%
     arrange(publication_id, desc(allele))
 
-new_rows <- data.frame("publication_id" = rep("Total", 4), 
-                       "allele" = c("Short", "Long", "Hyper", "Total"))
-new_rows[1, c("None", "Local", "Global", "Flye")] <- colSums(consensus_summary_table[consensus_summary_table$allele == "Short", c("None", "Local", "Global", "Flye")], na.rm = T)
-new_rows[2, c("None", "Local", "Global", "Flye")] <- colSums(consensus_summary_table[consensus_summary_table$allele == "Long", c("None", "Local", "Global", "Flye")], na.rm = T)
-new_rows[3, c("None", "Local", "Global", "Flye")] <- colSums(consensus_summary_table[consensus_summary_table$allele == "Hyper", c("None", "Local", "Global", "Flye")], na.rm = T)
+
+read_depth_means <- c(colMeans(consensus_summary_table[consensus_summary_table$allele == "Wildtype", "None"], na.rm = T),
+                      colMeans(, na.rm = T),
+                      colMeans(consensus_summary_table[consensus_summary_table$allele == "Hyperexpanded", "None"], na.rm = T),
+                      sum(consensus_summary_table$None) / length(unique(consensus_summary_table$publication_id)))
+names(read_depth_means) <- c("Wildtype", "Expanded", "Hyperexpanded", "Total")
+print("Mean read depth by allele:", quote = F)
+print(read_depth_means, quote = F)
+
+new_rows <- data.frame("publication_id" = rep(c("Total"), each = 4), 
+                       "allele" = rep(c("Wildtype", "Expanded", "Hyperexpanded", "Total"), times = 1))
+new_rows[1, c("None", "Local", "Global", "Flye")] <- colSums(consensus_summary_table[consensus_summary_table$allele == "Wildtype", c("None", "Local", "Global", "Flye")], na.rm = T)
+new_rows[2, c("None", "Local", "Global", "Flye")] <- colSums(consensus_summary_table[consensus_summary_table$allele == "Expanded", c("None", "Local", "Global", "Flye")], na.rm = T)
+new_rows[3, c("None", "Local", "Global", "Flye")] <- colSums(consensus_summary_table[consensus_summary_table$allele == "Hyperexpanded", c("None", "Local", "Global", "Flye")], na.rm = T)
 new_rows[4, c("None", "Local", "Global", "Flye")] <- colSums(consensus_summary_table[, c("None", "Local", "Global", "Flye")], na.rm = T)
 
 consensus_summary_table <- rbind(consensus_summary_table, new_rows)
 colnames(consensus_summary_table) <- c("Participant Id", "Allele", "Reads", "Flye consensus", "Global consensus", "Local consensus")
 write.csv(consensus_summary_table, "output_tables/Appendix Table 3-1 - Read depth and consensus success summary.csv", row.names = F)
 rm(consensus_summary_table, new_rows)
-
 
 
 ## Define colours

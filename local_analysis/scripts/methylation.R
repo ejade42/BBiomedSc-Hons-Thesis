@@ -301,6 +301,7 @@ mean_faceted <- ggplot(merged_data_filtered, aes(x = length, y = methylation_pro
     scale_colour_manual(values = c("OPDM" = "#DC1E1E", "NIID: Weakness" = "#008C00", "NIID: Other/unknown" = "#781EF0" , "MND" = "#F07800", "Asymptomatic" = "#006EDC")) +
     labs(x = "Trimmed read length over <i>NOTCH2NLC</i> repeat region (bp)", y = "Mean CpG methylation probability",
          col = "Phenotype", shape = "Read direction") +
+    scale_x_continuous(breaks = seq(0,2200,400)) +
     scale_y_continuous(breaks = seq(0, 1, 0.5), limits = c(0, 1)) +
     geom_vline(xintercept = 800, col = "red", linetype = "dashed", linewidth = 0.25) +
     geom_vline(xintercept = 200, col = "red", linetype = "dashed", linewidth = 0.25) +
@@ -326,6 +327,7 @@ sum_faceted <- ggplot(merged_data_filtered, aes(x = length, y = methylation_prob
     labs(x = "Trimmed read length over <i>NOTCH2NLC</i> repeat region (bp)", y = "Sum CpG methylation probability",
          col = "Phenotype", shape = "Read direction") +
     ylim(0, 700) +
+    scale_x_continuous(breaks = seq(0,2200,400)) +
     geom_vline(xintercept = 800, col = "red", linetype = "dashed", linewidth = 0.25) +
     geom_vline(xintercept = 200, col = "red", linetype = "dashed", linewidth = 0.25) +
     facet_wrap(~publication_id) +
@@ -334,7 +336,7 @@ sum_faceted <- ggplot(merged_data_filtered, aes(x = length, y = methylation_prob
     
 ggarrange(mean_combined, NULL, mean_faceted, NULL, NULL, NULL, sum_combined, NULL, sum_faceted, 
           nrow = 3, ncol = 3, heights = c(1, 0.1, 1), widths = c(1, 0.06, 1), common.legend = TRUE, legend = "right")
-ggsave("output_figures/Figure 3-10bcde - Qualitative methylation graphs.png", dpi = 1400, width = 16, height = 10)
+ggsave("output_figures/Figure 3-9bcde - Qualitative methylation graphs.png", dpi = 1400, width = 16, height = 10)
 ## -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -579,7 +581,7 @@ mean_phenotype_long
 
 mean_direction_plots <- ggarrange(mean_direction_short, mean_direction_long, mean_direction_hyper, nrow = 1, common.legend = TRUE, legend = "none")
 ggarrange(mean_direction_plots, mean_allele, mean_phenotype_short, mean_phenotype_long, widths = c(2, 1), nrow = 2, ncol = 2, common.legend = TRUE, legend = "right")
-ggsave("output_figures/Figure 3-11a - Mean methylation boxplots.png", dpi = 600, width = 17.5, height = 8)
+ggsave("output_figures/Figure 3-10a - Mean methylation boxplots.png", dpi = 600, width = 17.5, height = 8)
 
 
 
@@ -669,7 +671,7 @@ sum_phenotype_long
 
 sum_direction_plots <- ggarrange(sum_direction_short, sum_direction_long, sum_direction_hyper, nrow = 1, common.legend = TRUE, legend = "none")
 ggarrange(sum_direction_plots, sum_allele, sum_phenotype_short, sum_phenotype_long, widths = c(2, 1), nrow = 2, ncol = 2, common.legend = TRUE, legend = "right")
-ggsave("output_figures/Figure 3-11b - Sum methylation boxplots.png", dpi = 600, width = 17.5, height = 8)
+ggsave("output_figures/Figure 3-10b - Sum methylation boxplots.png", dpi = 600, width = 17.5, height = 8)
 
 ## -----------------------------------------------------------------------------------------------------------------------------------------------------------
 

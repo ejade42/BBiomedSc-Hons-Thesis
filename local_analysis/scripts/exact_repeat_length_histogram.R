@@ -41,30 +41,6 @@ merged_data$condition <- factor(merged_data$condition, c("NIID", "OPDM", "MND", 
 
 
 ## Calculating flanking lengths for fuzzy allele boundaries
-
-create_rectangle_parameters <- function(original_position, diff_vector, alpha_transform = 0.5) {
-    diff_table <- as.data.frame(table(diff_vector))
-    all_layers <- vector(mode = "list", length = nrow(diff_table))
-    alpha_interval <- 1 / max(diff_table[, 2])
-    parameters <- data.frame(matrix(NA, nrow(diff_table), 4))
-    
-    for (i in 1:nrow(diff_table)) {
-        position_shift <- as.numeric(as.character((diff_table[i, 1])))
-        xmin_position <- original_position - position_shift
-        xmax_position <- original_position - position_shift + 1
-        alpha_value <- (alpha_interval * diff_table[i, 2]) ^ (alpha_transform)
-
-        parameters[i, 1] <- position_shift
-        parameters[i, 2] <- xmin_position
-        parameters[i, 3] <- xmax_position
-        parameters[i, 4] <- alpha_value
-    }
-    
-    colnames(parameters) <- c("shift", "xmin", "xmax", "alpha")
-    return(parameters)
-}
-
-
 all_participant_data$flanking_lengths <- all_participant_data$flanked_length - all_participant_data$exact_length
 print("Flanking sequence length in each trimmed repeat:", quote = F)
 summary(all_participant_data$flanking_lengths)
@@ -73,61 +49,35 @@ print(paste("Mean:", mean(all_participant_data$flanking_lengths)), quote = F)
 print(paste("SD:", sd(all_participant_data$flanking_lengths)), quote = F)
 
 
-parameters_200 <- create_rectangle_parameters(200, all_participant_data$flanking_lengths, 1/3)
-parameters_800 <- create_rectangle_parameters(800, all_participant_data$flanking_lengths, 1/3)
-
-
-
-## Make brief figure explaining alpha scaling for appendix
-scaling_data <- data.frame(x_values = c(seq(0, 424, 0.1), seq(0, 30, 0.1)))
-scaling_data$y_values_cube <- (scaling_data$x_values / 424) ^ (1/3)
-scaling_data$y_values_line <- (scaling_data$x_values / 424)
-scaling_data$range <- c(rep("Whole range", length(seq(0, 424, 0.1))),
-                        rep("Zoomed", length(seq(0, 30, 0.1))))
-
-ggplot(scaling_data, aes(x = x_values)) +
-    scale_colour_manual(values = c("Linear" = "#006EDC", "Cube root" = "#DC1E1E")) +
-    geom_line(aes(y = y_values_cube, alpha = y_values_cube, col = "Cube root"), linewidth = 2) +
-    geom_line(aes(y = y_values_line, alpha = y_values_line, col = "Linear"), linewidth = 2) +
-    scale_alpha_continuous(range = c(0,1)) +
-    guides(alpha = "none") +
-    labs(x = "Occurences", y = "Alpha") +
-    facet_wrap(~range, scales = "free_x") +
-    theme_bw() + theme(legend.title = element_blank())
-
-ggsave("output_figures/Appendix Figure 3-1 - Alpha scaling.png", dpi = 600, width = 8, height = 4)
-
-
-
-
-
 
 ## Main figures
 full <- ggplot(merged_data, aes(x = exact_length, fill = condition, pattern = data_source)) +
     scale_x_continuous(breaks = seq(0,2200,200), limits = c(0,2200)) +
-    scale_alpha_continuous(range = c(0,1)) +
     scale_pattern_manual(values = c("Literature" = "stripe", "Novel (ours)" = "none")) +
     scale_fill_manual(values = c("OPDM" = "#DC1E1E", "NIID" = "#008C00", "MND" = "#F07800", "Asymptomatic" = "#006EDC")) +
     geom_histogram_pattern(col = alpha("#333", 1), linewidth = 0.3, binwidth = 25, boundary = 0, closed = "left",
                            pattern_angle = 45, pattern_colour = NA, pattern_fill = "black", pattern_spacing = 0.01, pattern_density = 0.2) +
-    geom_rect(data = parameters_200, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf, alpha = alpha), inherit.aes = F, fill = "red") +
-    geom_rect(data = parameters_800, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf, alpha = alpha), inherit.aes = F, fill = "red") +
+    geom_vline(xintercept = 173, col = "red", linetype = "dashed") +
+    geom_vline(xintercept = 773, col = "red", linetype = "dashed") +
+    ylim(0, 150) +
     theme_bw() +
     labs(x = "Exact <i>NOTCH2NLC</i> repeat length (bp)", y = "Read count", pattern = "Data source", fill = "Phenotype") +
     guides(pattern = guide_legend(override.aes = list(fill = "white")),  order = 1,
-           fill    = guide_legend(override.aes = list(pattern = "none"), order = 2),
-           alpha   = "none") +
+           fill    = guide_legend(override.aes = list(pattern = "none"), order = 2)) +
     theme(title = element_markdown()) 
 
 
+
 faceted <- ggplot(merged_data, aes(x = exact_length, fill = condition)) +
-    scale_x_continuous(breaks = seq(0,2200,500), limits = c(0,2200)) +
+    scale_x_continuous(breaks = seq(0,2200,400), limits = c(0,2200)) +
     scale_y_continuous(breaks = seq(0,50,25), limits = c(0,50)) +
-    scale_alpha_continuous(range = c(0,1)) +
     scale_fill_manual(values = c("OPDM" = "#DC1E1E", "NIID" = "#008C00", "MND" = "#F07800", "Asymptomatic" = "#006EDC")) +
+    scale_pattern_manual(values = c("Literature" = "stripe", "Novel" = "none")) +
+    geom_histogram_pattern(aes(pattern = data_source), col = alpha("#333", 1), linewidth = 0.3, binwidth = 25, boundary = 0, closed = "left",
+                           pattern_angle = 45, pattern_colour = NA, pattern_fill = "black", pattern_spacing = 0.01, pattern_density = 0.2) +
     geom_histogram(col = alpha("#333", 1), linewidth = 0.3, binwidth = 25, boundary = 0, closed = "left") +
-    geom_rect(data = parameters_200, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf, alpha = alpha), inherit.aes = F, fill = "red") +
-    geom_rect(data = parameters_800, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf, alpha = alpha), inherit.aes = F, fill = "red") +
+    geom_vline(xintercept = 173, col = "red", linetype = "dashed") +
+    geom_vline(xintercept = 773, col = "red", linetype = "dashed") +
     theme_bw() +
     labs(x = "Exact <i>NOTCH2NLC</i> repeat length (bp)", y = "Read count", pattern = "Data source", fill = "Phenotype") +
     guides(pattern = guide_legend(override.aes = list(fill = "white")),  order = 1,
@@ -136,10 +86,11 @@ faceted <- ggplot(merged_data, aes(x = exact_length, fill = condition)) +
     facet_wrap(~publication_id) +
     theme(title = element_markdown()) 
 
-ggarrange(full, faceted, nrow = 1, ncol = 2, heights = 0.37, widths = c(0.5, 0.5), common.legend = T, legend = "right")
-ggsave("output_figures/Figure 3-8bc - Exact repeat sizes histogram.png", dpi = 1200, width = 18, height = 6.25)
+height_diff <- 2.6
+left <- ggarrange(NULL, full, nrow = 2, ncol = 1, heights = c(height_diff, 6.25), common.legend = TRUE, legend = "none")
+combined <- ggarrange(left, faceted, nrow = 1, ncol = 2, widths = c(7.5, 10.5), common.legend = T, legend = "right")
 
-
+ggsave("output_figures/Figure 3-7bc - Exact repeat sizes histogram.png", plot = combined, dpi = 1200, width = 18, height = 6.25+height_diff)
 
 
 

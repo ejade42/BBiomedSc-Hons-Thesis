@@ -93,4 +93,4 @@ sequences <- sequences[1:(length(sequences)-allele_gap-participant_gap)]
 
 plot_image(sequences, colour_values)
 
-ggsave("output_figures/Figure 3-8a - Repeat illustration.png", dpi = 10, width = max(nchar(sequences)), height = length(sequences), limitsize = FALSE)
+ggsave("output_figures/Figure 3-7a - Repeat illustration.png", dpi = 10, width = max(nchar(sequences)), height = length(sequences), limitsize = FALSE)
