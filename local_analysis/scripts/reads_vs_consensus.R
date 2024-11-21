@@ -63,7 +63,7 @@ consensus_summary_table <- sequence_data %>%
 
 
 read_depth_means <- c(colMeans(consensus_summary_table[consensus_summary_table$allele == "Wildtype", "None"], na.rm = T),
-                      colMeans(, na.rm = T),
+                      colMeans(consensus_summary_table[consensus_summary_table$allele == "Expanded", "None"], na.rm = T),
                       colMeans(consensus_summary_table[consensus_summary_table$allele == "Hyperexpanded", "None"], na.rm = T),
                       sum(consensus_summary_table$None) / length(unique(consensus_summary_table$publication_id)))
 names(read_depth_means) <- c("Wildtype", "Expanded", "Hyperexpanded", "Total")

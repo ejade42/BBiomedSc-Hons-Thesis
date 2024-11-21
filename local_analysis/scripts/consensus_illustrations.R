@@ -165,42 +165,42 @@ writeLines(fasta_consensus_output, "intermediate_files/all_local_consensuses.fas
 root = "output_figures/Figure 3-8 - Selected consensus visualisations - "
 
 ## NIID:
-f1_iii_3_short <- consensuses %>% filter(publication_id == "F1-III-3", allele == "Short") %>% pull(sequence)
-generate_consensus_image(f1_iii_3_short, filename = paste0(root, "F1-III-3_short.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+f1_iii_3_wildtype <- consensuses %>% filter(publication_id == "F1-III-3", allele == "Wildtype") %>% pull(sequence)
+generate_consensus_image(f1_iii_3_wildtype, filename = paste0(root, "F1-III-3_wildtype.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
-f1_iii_3_long <- consensuses %>% filter(publication_id == "F1-III-3", allele == "Long") %>% pull(sequence)
-generate_consensus_image(f1_iii_3_long, filename = paste0(root, "F1-III-3_long.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+f1_iii_3_expanded <- consensuses %>% filter(publication_id == "F1-III-3", allele == "Expanded") %>% pull(sequence)
+generate_consensus_image(f1_iii_3_expanded, filename = paste0(root, "F1-III-3_expanded.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
 
-podar_2023_long <- consensuses %>% filter(publication_id == "Podar 2023", allele == "Long") %>% pull(sequence)
-generate_consensus_image(podar_2023_long, filename = paste0(root, "Podar_2023_long.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+podar_2023_expanded <- consensuses %>% filter(publication_id == "Podar 2023", allele == "Expanded") %>% pull(sequence)
+generate_consensus_image(podar_2023_expanded, filename = paste0(root, "Podar_2023_expanded.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
-podar_2023_short <- consensuses %>% filter(publication_id == "Podar 2023", allele == "Short") %>% pull(sequence)
-generate_consensus_image(podar_2023_short, filename = paste0(root, "Podar_2023_short.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+podar_2023_wildtype <- consensuses %>% filter(publication_id == "Podar 2023", allele == "Wildtype") %>% pull(sequence)
+generate_consensus_image(podar_2023_wildtype, filename = paste0(root, "Podar_2023_wildtype.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
 
 ## OPDM:
-f2_ii_2_short <- consensuses %>% filter(publication_id == "F2-II-2", allele == "Short") %>% pull(sequence)
-generate_consensus_image(f2_ii_2_short, filename = paste0(root, "F2-II-2_short.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+f2_ii_2_wildtype <- consensuses %>% filter(publication_id == "F2-II-2", allele == "Wildtype") %>% pull(sequence)
+generate_consensus_image(f2_ii_2_wildtype, filename = paste0(root, "F2-II-2_wildtype.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
-f2_ii_2_long <- consensuses %>% filter(publication_id == "F2-II-2", allele == "Long") %>% pull(sequence)
-generate_consensus_image(f2_ii_2_long, filename = paste0(root, "F2-II-2_long.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+f2_ii_2_expanded <- consensuses %>% filter(publication_id == "F2-II-2", allele == "Expanded") %>% pull(sequence)
+generate_consensus_image(f2_ii_2_expanded, filename = paste0(root, "F2-II-2_expanded.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
 
-f2_i_1_short <- consensuses %>% filter(publication_id == "F2-I-1", allele == "Short") %>% pull(sequence)
-generate_consensus_image(f2_i_1_short, filename = paste0(root, "F2-I-1_short.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+f2_i_1_wildtype <- consensuses %>% filter(publication_id == "F2-I-1", allele == "Wildtype") %>% pull(sequence)
+generate_consensus_image(f2_i_1_wildtype, filename = paste0(root, "F2-I-1_wildtype.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
-f2_i_1_hyper <- consensuses %>% filter(publication_id == "F2-I-1", allele == "Hyper") %>% pull(sequence)
+f2_i_1_hyper <- consensuses %>% filter(publication_id == "F2-I-1", allele == "Hyperexpanded") %>% pull(sequence)
 generate_consensus_image(f2_i_1_hyper, filename = paste0(root, "F2-I-1_hyper.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
 
 
 ## MND:
-mnd1_short <- consensuses %>% filter(publication_id == "MND1", allele == "Short") %>% pull(sequence)
-generate_consensus_image(mnd1_short, filename = paste0(root, "MND1_short.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+mnd1_wildtype <- consensuses %>% filter(publication_id == "MND1", allele == "Wildtype") %>% pull(sequence)
+generate_consensus_image(mnd1_wildtype, filename = paste0(root, "MND1_wildtype.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
-mnd2_short <- consensuses %>% filter(publication_id == "MND2", allele == "Short") %>% pull(sequence)
-generate_consensus_image(mnd2_short, filename = paste0(root, "MND2_short.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+mnd2_wildtype <- consensuses %>% filter(publication_id == "MND2", allele == "Wildtype") %>% pull(sequence)
+generate_consensus_image(mnd2_wildtype, filename = paste0(root, "MND2_wildtype.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
 
-mnd7_short <- consensuses %>% filter(publication_id == "MND7", allele == "Short") %>% pull(sequence)
-generate_consensus_image(mnd7_short, filename = paste0(root, "MND7_short.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)
+mnd7_wildtype <- consensuses %>% filter(publication_id == "MND7", allele == "Wildtype") %>% pull(sequence)
+generate_consensus_image(mnd7_wildtype, filename = paste0(root, "MND7_wildtype.png"), colour_values, line_wrapping = 75, number_interval = 15, return = TRUE, save = TRUE)

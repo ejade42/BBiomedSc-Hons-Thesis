@@ -1,4 +1,4 @@
-## Creates qualitative (F3-10) and quantitative (F3-11) methylation plots
+## Creates qualitative (F3-9) and quantitative (F3-10) methylation plots
 
 library(tidyverse)
 library(lme4)
@@ -272,7 +272,7 @@ lengths       <- as.numeric(construct_vector(methylation_sorted, "length")) %>%
 
 
 plot_image(locations, probabilities, lengths, "blue", "red", "white", "lightgrey")
-ggsave("output_figures/Figure 3-10a - Methylation illustration.png", dpi = 10, width = max(lengths), height = length(lengths), limitsize = FALSE)
+ggsave("output_figures/Figure 3-9a - Methylation illustration.png", dpi = 10, width = max(lengths), height = length(lengths), limitsize = FALSE)
 ## -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -410,7 +410,7 @@ methylation_model_anovas[10, "reads"] <- nrow(merged_data_unsuspicious %>% filte
 methylation_model_anovas[10, c("chisq", "df", "p_value")] <- Anova(methylation_sum_model_phenotype_short)
 
 methylation_model_anovas[, c("chisq", "df", "p_value")] <- signif(methylation_model_anovas[, c("chisq", "df", "p_value")], 3)
-write.table(methylation_model_anovas, "intermediate_files/methylation_model_anovas.csv", row.names = F)
+write.csv(methylation_model_anovas, "intermediate_files/methylation_model_anovas.csv", row.names = F)
 
 
 ## Assumptions

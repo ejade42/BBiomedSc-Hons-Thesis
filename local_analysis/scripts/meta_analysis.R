@@ -369,12 +369,12 @@ ggarrange(length + ggtitle("(a) Repeat length"), agc + ggtitle("(b) AGC proporti
           gga + ggtitle("(c) GGA proportion"), ggc + ggtitle("(d) GGC proportion"), 
           a + ggtitle("(e) A proportion"), c + ggtitle("(f) C proportion"), 
           nrow = 3, ncol = 2, common.legend = T, legend = "right")
-ggsave("output_figures/Figure 3-12 - Meta-analysis six variables.png", dpi = 600, width = 17.5, height = 13.5)
+ggsave("output_figures/Figure 3-11 - Meta-analysis six variables.png", dpi = 600, width = 17.5, height = 13.5)
 
 ggarrange(units + ggtitle("(a) Repeat unit proportion"), ggt + ggtitle("(b) GGT proportion"), 
           g + ggtitle("(c) G proportion"), t + ggtitle("(d) T proportion"), 
           nrow = 2, ncol = 2, common.legend = T, legend = "right")
-ggsave("output_figures/Figure 3-12 - Meta-analysis four variables.png", dpi = 600, width = 17.5, height = 9)
+ggsave("output_figures/Figure 3-11 - Meta-analysis four variables.png", dpi = 600, width = 17.5, height = 9)
 
 ggarrange(length + ggtitle("(a) Repeat length"), units + ggtitle("(b) Repeat unit proportion"), 
           gga + ggtitle("(c) GGA proportion"), ggc + ggtitle("(d) GGC proportion"), 
@@ -382,7 +382,7 @@ ggarrange(length + ggtitle("(a) Repeat length"), units + ggtitle("(b) Repeat uni
           a + ggtitle("(g) A proportion"), c + ggtitle("(h) C proportion"), 
           g + ggtitle("(i) G proportion"), t + ggtitle("(j) T proportion"),
           nrow = 5, ncol = 2, common.legend = T, legend = "right")
-ggsave("output_figures/Figure 3-12 - Meta-analysis ten variables.png", dpi = 600, width = 17.5, height = 20)
+ggsave("output_figures/Figure 3-11 - Meta-analysis ten variables.png", dpi = 600, width = 17.5, height = 20)
 ##--------------------------------------------------------------------------------------------------
 
 
