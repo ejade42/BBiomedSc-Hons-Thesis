@@ -335,7 +335,7 @@ sum_faceted <- ggplot(merged_data_filtered, aes(x = length, y = methylation_prob
     theme_bw() + theme(axis.title.x = element_markdown())
     
 ggarrange(mean_combined, NULL, mean_faceted, NULL, NULL, NULL, sum_combined, NULL, sum_faceted, 
-          nrow = 3, ncol = 3, heights = c(1, 0.1, 1), widths = c(1, 0.06, 1), common.legend = TRUE, legend = "right")
+          nrow = 3, ncol = 3, heights = c(1, 0.1, 1), widths = c(0.925, 0.06, 1.075), common.legend = TRUE, legend = "right")
 ggsave("output_figures/Figure 3-9bcde - Qualitative methylation graphs.png", dpi = 1400, width = 16, height = 10)
 ## -----------------------------------------------------------------------------------------------------------------------------------------------------------
 

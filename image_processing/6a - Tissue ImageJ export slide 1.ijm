@@ -20,7 +20,7 @@ output_format = "TIFF"
 open(input_path + "241017_NOTCH_20x_Slide1.nd2");
 
 setSlice(1);
-setMinAndMax(0, 750);
+setMinAndMax(0, 250);
 run("Apply LUT");   // click "no" on apply to all
 run("Duplicate...", "title=temp");
 makeRectangle(12075, 9725, 420, 315);
@@ -36,7 +36,7 @@ close();
 
 
 setSlice(2);
-setMinAndMax(120, 750);
+setMinAndMax(120, 500);
 run("Apply LUT");
 run("Duplicate...", "title=temp");
 makeRectangle(12075, 9725, 420, 315);
@@ -53,7 +53,7 @@ close();
 
 
 setSlice(3);
-setMinAndMax(120, 2000);
+setMinAndMax(120, 1500);
 run("Apply LUT");
 run("Duplicate...", "title=temp");
 makeRectangle(12075, 9725, 420, 315);
