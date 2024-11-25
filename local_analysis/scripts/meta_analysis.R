@@ -62,7 +62,7 @@ sequence_data$condition_factor <- factor(sequence_data$condition, c("OPDM", "HDM
 
 
 
-## MANN-WHITNEY
+## SUMMARY TABLES
 ##--------------------------------------------------------------------------------------------------
 ## Calculate weight as reciprocal of number of rows for each level of the chosen column
 weight_by_column <- function(data_to_weight, grouping_variable) {
@@ -85,12 +85,28 @@ sequence_data_filtered <- sequence_data %>%
 phenotype_summary_table <- sequence_data_filtered %>%
     group_by(phenotype_factor) %>%
     summarise(alleles = n(), participants = sum(weight))
+phenotype_summary_table <- rbind(phenotype_summary_table, data.frame(phenotype_factor = "Total",
+                                                                     alleles = sum(phenotype_summary_table$alleles),
+                                                                     participants = sum(phenotype_summary_table$participants)))
 write.csv(phenotype_summary_table, "output_tables/Appendix Table 2-5 - Meta-analysis phenotype categories.csv", row.names = F)
 
+## Participants per paper
+participants_per_paper <- sequence_data_filtered %>%
+    group_by(paper) %>%
+    summarise(alleles = n(), participants = sum(weight))
+
+## Ancestry-phenotype combinations
+ancestry_phenotype_combinations <- sequence_data_filtered %>%
+    group_by(ancestry_group, phenotype) %>% 
+    summarise(count = n())
+##--------------------------------------------------------------------------------------------------
 
 
 
 
+
+## MANN-WHITNEY
+##--------------------------------------------------------------------------------------------------
 ## Function to calculate P values for all pairs, for a given column
 all_wilcoxon_tests <- function(data, all_combinations, column) {
     p_values   <- rep(NA, length(all_combinations))
